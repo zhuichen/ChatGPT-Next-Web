@@ -4,7 +4,6 @@ import { StoreKey } from "../constant";
 import { getHeaders } from "../client/api";
 import { BOT_HELLO } from "./chat";
 import { ALL_MODELS } from "./config";
-import kv from "@vercel/kv";
 
 export interface AccessControlStore {
   accessCode: string;
