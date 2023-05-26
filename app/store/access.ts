@@ -4,6 +4,7 @@ import { StoreKey } from "../constant";
 import { getHeaders } from "../client/api";
 import { BOT_HELLO } from "./chat";
 import { ALL_MODELS } from "./config";
+import kv from "@vercel/kv";
 
 export interface AccessControlStore {
   accessCode: string;
@@ -39,8 +40,9 @@ export const useAccessStore = create<AccessControlStore>()(
       updateCode(code: string) {
         set(() => ({ accessCode: code }));
       },
-      updateToken(token: string) {
-        set(() => ({ token }));
+      async updateToken(token: string) {
+        const res = await kv.get("code-" + token);
+        set(() => ({ token: res }));
       },
       isAuthorized() {
         get().fetch();

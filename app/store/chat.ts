@@ -11,6 +11,7 @@ import { StoreKey } from "../constant";
 import { api, RequestMessage } from "../client/api";
 import { ChatControllerPool } from "../client/controller";
 import { prettyObject } from "../utils/format";
+import { useAccessStore } from "../store";
 
 export type ChatMessage = RequestMessage & {
   date: string;

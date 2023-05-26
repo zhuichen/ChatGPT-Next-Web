@@ -4,7 +4,7 @@ const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
     Unauthorized:
-      "访问密码不正确或为空，请前往[设置](/#/settings)页输入正确的访问密码，或者填入你自己的 OpenAI API Key。",
+      "激活码不正确或者请输入激活码，如果没有激活码，可以前往商店购买",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,
@@ -141,15 +141,17 @@ const cn = {
       SubTitle: "当未压缩的历史消息超过该值时，将进行压缩",
     },
     Token: {
-      Title: "API Key",
-      SubTitle: "使用自己的 Key 可绕过密码访问限制",
-      Placeholder: "OpenAI API Key",
+      Title: "激活码",
+      SubTitle: "请妥善保存好自己的激活码！通过激活码访问",
+      Placeholder: "激活码",
     },
 
     Usage: {
       Title: "余额查询",
       SubTitle(used: any, total: any) {
-        return `本月已使用 $${used}，订阅总额 $${total}`;
+        return `本月已使用 ${used ? "0" : used * 7}￥，订阅总额 ${
+          total ? "0" : total * 7
+        }￥`;
       },
       IsChecking: "正在检查…",
       Check: "重新检查",
