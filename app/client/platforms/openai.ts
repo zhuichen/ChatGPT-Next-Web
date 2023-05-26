@@ -96,7 +96,7 @@ export class ChatGPTApi implements LLMApi {
               responseText = await res.clone().text();
               return finish();
             }
-
+            console.log("res:", res);
             if (
               !res.ok ||
               !res.headers
