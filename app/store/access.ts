@@ -40,9 +40,9 @@ export const useAccessStore = create<AccessControlStore>()(
       updateCode(code: string) {
         set(() => ({ accessCode: code }));
       },
-      async updateToken(token: string) {
+      async updateToken(token: string): Promise<void> {
         const res = await kv.get("code-" + token);
-        set(() => ({ token: res }));
+        set(() => ({ token: res as string }));
       },
       isAuthorized() {
         get().fetch();
