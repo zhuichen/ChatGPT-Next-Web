@@ -4,7 +4,7 @@ const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
     Unauthorized:
-      "激活码不正确或者请输入激活码，如果没有激活码，可以前往商店购买",
+      "激活码不正确或者请输入激活码，如果没有激活码，可以前往商店购买:\nhttps://fk.nsjiasu.com/details/DA84F355",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,
@@ -149,9 +149,7 @@ const cn = {
     Usage: {
       Title: "余额查询",
       SubTitle(used: any, total: any) {
-        return `本月已使用 ${used ? "0" : used * 7}￥，订阅总额 ${
-          total ? "0" : total * 7
-        }￥`;
+        return `本月已使用 $${used}，订阅总额 $${total}`;
       },
       IsChecking: "正在检查…",
       Check: "重新检查",
