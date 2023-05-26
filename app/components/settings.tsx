@@ -333,6 +333,65 @@ export function Settings() {
       </div>
       <div className={styles["settings"]}>
         <List>
+          {enabledAccessControl ? (
+            <ListItem
+              title={Locale.Settings.AccessCode.Title}
+              subTitle={Locale.Settings.AccessCode.SubTitle}
+            >
+              <PasswordInput
+                value={accessStore.accessCode}
+                type="text"
+                placeholder={Locale.Settings.AccessCode.Placeholder}
+                onChange={(e) => {
+                  accessStore.updateCode(e.currentTarget.value);
+                }}
+              />
+            </ListItem>
+          ) : (
+            <></>
+          )}
+
+          {!accessStore.hideUserApiKey ? (
+            <ListItem
+              title={Locale.Settings.Token.Title}
+              subTitle={Locale.Settings.Token.SubTitle}
+            >
+              <PasswordInput
+                value={accessStore.token}
+                type="text"
+                placeholder={Locale.Settings.Token.Placeholder}
+                onChange={(e) => {
+                  accessStore.updateToken(e.currentTarget.value);
+                }}
+              />
+            </ListItem>
+          ) : null}
+
+          <ListItem
+            title={Locale.Settings.Usage.Title}
+            subTitle={
+              showUsage
+                ? loadingUsage
+                  ? Locale.Settings.Usage.IsChecking
+                  : Locale.Settings.Usage.SubTitle(
+                      usage?.used ?? "[?]",
+                      usage?.subscription ?? "[?]",
+                    )
+                : Locale.Settings.Usage.NoAccess
+            }
+          >
+            {!showUsage || loadingUsage ? (
+              <div />
+            ) : (
+              <IconButton
+                icon={<ResetIcon></ResetIcon>}
+                text={Locale.Settings.Usage.Check}
+                onClick={() => checkUsage(true)}
+              />
+            )}
+          </ListItem>
+        </List>
+        <List>
           <ListItem title={Locale.Settings.Avatar}>
             <Popover
               onClose={() => setShowEmojiPicker(false)}
@@ -355,7 +414,7 @@ export function Settings() {
             </Popover>
           </ListItem>
 
-          <ListItem
+          {/* <ListItem
             title={Locale.Settings.Update.Version(currentVersion ?? "unknown")}
             subTitle={
               checkingUpdate
@@ -378,7 +437,7 @@ export function Settings() {
                 onClick={() => checkUpdate(true)}
               />
             )}
-          </ListItem>
+          </ListItem> */}
 
           <ListItem title={Locale.Settings.SendKey}>
             <Select
@@ -465,7 +524,7 @@ export function Settings() {
             ></input>
           </ListItem>
 
-          <ListItem
+          {/* <ListItem
             title={Locale.Settings.Mask.Title}
             subTitle={Locale.Settings.Mask.SubTitle}
           >
@@ -480,71 +539,11 @@ export function Settings() {
                 )
               }
             ></input>
-          </ListItem>
+          </ListItem> */}
         </List>
 
         <List>
-          {enabledAccessControl ? (
-            <ListItem
-              title={Locale.Settings.AccessCode.Title}
-              subTitle={Locale.Settings.AccessCode.SubTitle}
-            >
-              <PasswordInput
-                value={accessStore.accessCode}
-                type="text"
-                placeholder={Locale.Settings.AccessCode.Placeholder}
-                onChange={(e) => {
-                  accessStore.updateCode(e.currentTarget.value);
-                }}
-              />
-            </ListItem>
-          ) : (
-            <></>
-          )}
-
-          {!accessStore.hideUserApiKey ? (
-            <ListItem
-              title={Locale.Settings.Token.Title}
-              subTitle={Locale.Settings.Token.SubTitle}
-            >
-              <PasswordInput
-                value={accessStore.token}
-                type="text"
-                placeholder={Locale.Settings.Token.Placeholder}
-                onChange={(e) => {
-                  accessStore.updateToken(e.currentTarget.value);
-                }}
-              />
-            </ListItem>
-          ) : null}
-
-          <ListItem
-            title={Locale.Settings.Usage.Title}
-            subTitle={
-              showUsage
-                ? loadingUsage
-                  ? Locale.Settings.Usage.IsChecking
-                  : Locale.Settings.Usage.SubTitle(
-                      usage?.used ?? "[?]",
-                      usage?.subscription ?? "[?]",
-                    )
-                : Locale.Settings.Usage.NoAccess
-            }
-          >
-            {!showUsage || loadingUsage ? (
-              <div />
-            ) : (
-              <IconButton
-                icon={<ResetIcon></ResetIcon>}
-                text={Locale.Settings.Usage.Check}
-                onClick={() => checkUsage(true)}
-              />
-            )}
-          </ListItem>
-        </List>
-
-        <List>
-          <ListItem
+          {/* <ListItem
             title={Locale.Settings.Prompt.Disable.Title}
             subTitle={Locale.Settings.Prompt.Disable.SubTitle}
           >
@@ -558,9 +557,9 @@ export function Settings() {
                 )
               }
             ></input>
-          </ListItem>
+          </ListItem> */}
 
-          <ListItem
+          {/* <ListItem
             title={Locale.Settings.Prompt.List}
             subTitle={Locale.Settings.Prompt.ListCount(
               builtinCount,
@@ -572,10 +571,10 @@ export function Settings() {
               text={Locale.Settings.Prompt.Edit}
               onClick={() => setShowPromptModal(true)}
             />
-          </ListItem>
+          </ListItem> */}
         </List>
 
-        <List>
+        {/* <List>
           <ModelConfigList
             modelConfig={config.modelConfig}
             updateConfig={(updater) => {
@@ -584,7 +583,7 @@ export function Settings() {
               config.update((config) => (config.modelConfig = modelConfig));
             }}
           />
-        </List>
+        </List> */}
 
         {shouldShowPromptModal && (
           <UserPromptModal onClose={() => setShowPromptModal(false)} />
