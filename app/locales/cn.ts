@@ -4,7 +4,7 @@ const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
     Unauthorized:
-      "激活码不正确或者请输入激活码，如果没有激活码，可以前往商店购买:\nhttps://fk.nsjiasu.com/details/DA84F355",
+      "激活码不正确或者请输入激活码，如果没有激活码，可以前往商店购买:\nhttps://fk.nsjiasu.com/details/DA84F355\n购买后前往[设置](/#/settings)输入激活码",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,
